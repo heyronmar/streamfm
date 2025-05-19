@@ -1,4 +1,3 @@
-// TypeScript interface for a radio station entry
 export interface Station {
     changeuuid: string;
     stationuuid: string;
