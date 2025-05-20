@@ -1,11 +1,13 @@
-import { fetchStationByUUID } from "@/lib/utils/station";
+import { fetchStationByUUID } from '@/lib/utils/station';
+import StationClientView from '@/components/StationClientView';
+import Link from 'next/link';
 
 export default async function StationDetailPage({
     params,
     }: {
-    params: { stationId?: string };
+    params: Record<string, string>;
     }) {
-    const stationId = params.stationId;
+    const { stationId } = params;
 
     if (!stationId) {
         console.warn('[❌ Missing stationId in params]');
@@ -19,12 +21,12 @@ export default async function StationDetailPage({
     }
 
     return (
-        <div className="p-6 max-w-4xl mx-auto">
-        <h1 className="text-2xl font-bold mb-4">{station.name}</h1>
+        <div className="p-6 max-w-2xl mx-auto">
+        <Link href="/stations" className="text-blue-500 underline text-sm mb-4 inline-block">
+            ← Back to stations
+        </Link>
 
-        <pre className="text-sm bg-gray-100 p-4 rounded text-gray-800 overflow-x-auto">
-            {JSON.stringify(station, null, 2)}
-        </pre>
+        <StationClientView station={station} />
         </div>
     );
 }
